@@ -6,26 +6,22 @@ $name = $_POST['name'] ?? '';
 $surname = $_POST['surname'] ?? '';
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
-$role = 'user';
+$birthdate = $_POST['birthdate'] ?? '';
 
-if ($name == '' || $surname == '' || $username == '' || $password == '') {
+
+if ($name == '' || $surname == '' || $username == '' || $password == '' || $birthdate == '') {
     header('Location: register.php?error_text=empty_fields');
     exit();
 }
 
-
-echo $username;
-
 $query = '
-INSERT INTO users (name, surname, username, password, role)
+INSERT INTO users (name, surname, username, password, birthdate)
 VALUES (?, ?, ?, ?, ?)
 ';
 
-print_r([$name, $surname, $username, password_hash($password, PASSWORD_DEFAULT), $role]);
 try {
     $sql = $pdo->prepare($query);
-    $sql->execute([$name, $surname, $username, password_hash($password, PASSWORD_DEFAULT), $role]);
-
+    $sql->execute([$name, $surname, $username, password_hash($password, PASSWORD_DEFAULT), $birthdate]);
 } catch (PDOException $e) {
     echo $e->getMessage();
     exit();

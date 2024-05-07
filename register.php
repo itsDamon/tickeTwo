@@ -1,4 +1,4 @@
-<?php require_once 'header.html'; ?>
+<?php require_once 'header.php'; ?>
 
 <form class="d-flex align-items-center justify-content center flex-column mb-2" action="register_validation.php"
       method="post">
@@ -9,6 +9,10 @@
     <div class="form-floating mb-3">
         <input class="form-control" type="text" name="surname" id="surname_input" placeholder="surname" required>
         <label for="surname_input">Surname</label>
+    </div>
+    <div class="input-group mb-3 w-100">
+        <span class="input-group-text">Birth date</span>
+        <input class="form-control" aria-label="Birth date" type="date" name="birthdate" id="birthdate_input" required>
     </div>
     <div class="form-floating mb-3">
         <input class="form-control" type="text" name="username" id="username_input" placeholder="username or email"
@@ -21,5 +25,4 @@
     </div>
     <input class="btn btn-outline-secondary" type="submit" value="Sign In">
 </form>
-
 <?php require_once 'footer.html'; ?>

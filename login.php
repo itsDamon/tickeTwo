@@ -1,4 +1,4 @@
-<?php require_once 'header.html' ?>
+<?php require_once 'header.php' ?>
 
 <form class="d-flex align-items-center justify-content center flex-column mb-2" action="login_validation.php"
       method="post">

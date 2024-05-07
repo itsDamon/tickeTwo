@@ -12,12 +12,12 @@ CREATE TABLE `performers`
 
 CREATE TABLE `users`
 (
-    `id`       INT                    NOT NULL AUTO_INCREMENT,
-    `name`     VARCHAR(30)            NOT NULL,
-    `surname`  VARCHAR(30)            NOT NULL,
-    `username` VARCHAR(30)            NOT NULL UNIQUE,
-    `password` VARCHAR(255)            NOT NULL,
-    `role`     ENUM ('admin', 'user') NOT NULL,
+    `id`        INT          NOT NULL AUTO_INCREMENT,
+    `name`      VARCHAR(30)  NOT NULL,
+    `surname`   VARCHAR(30)  NOT NULL,
+    `username`  VARCHAR(30)  NOT NULL UNIQUE,
+    `password`  VARCHAR(255) NOT NULL,
+    `birthdate` DATE         NOT NULL,
     PRIMARY KEY (`id`)
 );
 
@@ -32,15 +32,15 @@ CREATE TABLE `locations`
     PRIMARY KEY (`id`)
 );
 
-
 CREATE TABLE `events`
 (
-    `id`           INT          NOT NULL AUTO_INCREMENT,
-    `name`         VARCHAR(30)  NOT NULL,
-    `description`  VARCHAR(255) NOT NULL,
-    `date`         TIMESTAMP    NOT NULL,
-    `location_id`  INT          NOT NULL,
-    `performer_id` INT          NOT NULL,
+    `id`            INT          NOT NULL AUTO_INCREMENT,
+    `name`          VARCHAR(30)  NOT NULL,
+    `description`   VARCHAR(255) NOT NULL,
+    `date`          TIMESTAMP    NOT NULL,
+    `over_eighteen` BOOL         NOT NULL,
+    `location_id`   INT          NOT NULL,
+    `performer_id`  INT          NOT NULL,
     FOREIGN KEY (`performer_id`) REFERENCES performers (`id`),
     FOREIGN KEY (`location_id`) REFERENCES locations (`id`),
     PRIMARY KEY (`id`)
