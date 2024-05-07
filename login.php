@@ -15,11 +15,11 @@
     </div>
     <input class="btn btn-outline-secondary" type="submit" value="Login">
     <hr class="w-100">
+</form>
     <a href="register.php">
         <button class="btn btn-outline-secondary">
             Register
         </button>
     </a>
-</form>
 
 <?php require_once 'footer.html' ?>
