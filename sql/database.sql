@@ -2,8 +2,13 @@ DROP DATABASE IF EXISTS `ticketwo`;
 CREATE DATABASE IF NOT EXISTS `ticketwo`;
 USE `ticketwo`;
 
-
-
+CREATE TABLE `performer`
+(
+    `id`         INT         NOT NULL AUTO_INCREMENT,
+    `stage_name` VARCHAR(30) NOT NULL,
+    `biography`  TEXT        NOT NULL,
+    PRIMARY KEY (`id`)
+);
 
 CREATE TABLE `user`
 (
@@ -30,11 +35,13 @@ CREATE TABLE `location`
 
 CREATE TABLE `event`
 (
-    `id`          INT          NOT NULL AUTO_INCREMENT,
-    `name`        VARCHAR(30)  NOT NULL,
-    `description` VARCHAR(255) NOT NULL,
-    `date`        TIMESTAMP    NOT NULL,
-    `location_id` INT          NOT NULL,
+    `id`           INT          NOT NULL AUTO_INCREMENT,
+    `name`         VARCHAR(30)  NOT NULL,
+    `description`  VARCHAR(255) NOT NULL,
+    `date`         TIMESTAMP    NOT NULL,
+    `location_id`  INT          NOT NULL,
+    `performer_id` INT          NOT NULL,
+    FOREIGN KEY (`performer_id`) REFERENCES performer (`id`),
     FOREIGN KEY (`location_id`) REFERENCES location (`id`),
     PRIMARY KEY (`id`)
 );
