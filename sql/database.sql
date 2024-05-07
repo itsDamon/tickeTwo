@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS `ticketwo`;
 CREATE DATABASE IF NOT EXISTS `ticketwo`;
 USE `ticketwo`;
 
-CREATE TABLE `performer`
+CREATE TABLE `performers`
 (
     `id`         INT         NOT NULL AUTO_INCREMENT,
     `stage_name` VARCHAR(30) NOT NULL,
@@ -10,18 +10,18 @@ CREATE TABLE `performer`
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `user`
+CREATE TABLE `users`
 (
     `id`       INT                    NOT NULL AUTO_INCREMENT,
     `name`     VARCHAR(30)            NOT NULL,
     `surname`  VARCHAR(30)            NOT NULL,
     `username` VARCHAR(30)            NOT NULL UNIQUE,
-    `password` VARCHAR(40)            NOT NULL,
+    `password` VARCHAR(255)            NOT NULL,
     `role`     ENUM ('admin', 'user') NOT NULL,
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `location`
+CREATE TABLE `locations`
 (
     `id`               INT          NOT NULL AUTO_INCREMENT,
     `name`             VARCHAR(30)  NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `location`
 );
 
 
-CREATE TABLE `event`
+CREATE TABLE `events`
 (
     `id`           INT          NOT NULL AUTO_INCREMENT,
     `name`         VARCHAR(30)  NOT NULL,
@@ -41,17 +41,17 @@ CREATE TABLE `event`
     `date`         TIMESTAMP    NOT NULL,
     `location_id`  INT          NOT NULL,
     `performer_id` INT          NOT NULL,
-    FOREIGN KEY (`performer_id`) REFERENCES performer (`id`),
-    FOREIGN KEY (`location_id`) REFERENCES location (`id`),
+    FOREIGN KEY (`performer_id`) REFERENCES performers (`id`),
+    FOREIGN KEY (`location_id`) REFERENCES locations (`id`),
     PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `ticket`
+CREATE TABLE `tickets`
 (
     `id`       INT NOT NULL AUTO_INCREMENT,
     `user_id`  INT NOT NULL,
     `event_id` INT NOT NULL,
-    FOREIGN KEY (`user_id`) REFERENCES user (`id`),
-    FOREIGN KEY (`event_id`) REFERENCES event (`id`),
+    FOREIGN KEY (`user_id`) REFERENCES users (`id`),
+    FOREIGN KEY (`event_id`) REFERENCES events (`id`),
     PRIMARY KEY (`id`)
 );
