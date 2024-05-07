@@ -42,4 +42,18 @@ $user = $sql->fetch();
             } ?>
         </div>
     </div>
+
+    <div class="mt-4">
+        <a href="logout.php" id="logout">
+            <button class="btn btn-primary">Logout</button>
+        </a>
+    </div>
+
+    <script>
+        $(function () {
+            $('a#logout').click(function () {
+                return confirm('Do you really want to log out?');
+            });
+        });
+    </script>
 <?php require_once 'footer.html'; ?>
