@@ -2,6 +2,9 @@ DROP DATABASE IF EXISTS `ticketwo`;
 CREATE DATABASE IF NOT EXISTS `ticketwo`;
 USE `ticketwo`;
 
+
+
+
 CREATE TABLE `user`
 (
     `id`       INT                    NOT NULL AUTO_INCREMENT,
