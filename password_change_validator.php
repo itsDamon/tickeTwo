@@ -43,4 +43,4 @@ WHERE id = ?';
 $sql = $pdo->prepare($query);
 $sql->execute([password_hash($new_password, PASSWORD_DEFAULT), $user_id]);
 
-header('Location: password_change.php?success_text=password_changed');
+header('Location: profile.php?success_text=changed_password');
