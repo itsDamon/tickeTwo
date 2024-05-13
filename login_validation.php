@@ -26,5 +26,5 @@ if (!$user || !password_verify($password, $hashed_password)) {
     $_SESSION['user'] = $user['username'];
     $_SESSION['user_id'] = $user['id'];
 
-    header('Location: index.php');
+    header('Location: home.php');
 }

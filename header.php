@@ -16,7 +16,7 @@ date_default_timezone_set('Europe/Rome');
 </head>
 <body class="d-flex flex-column min-vh-100 flex-grow-1 p-3">
 <header class="text-center p-2 d-flex align-items-center justify-content-around">
-    <a href="index.php" class="link-underline link-underline-opacity-0">
+    <a href="home.php" class="link-underline link-underline-opacity-0">
         <h2>TickeTwo</h2>
     </a>
     <?php if (!isset($_SESSION['user'])) { ?>
