@@ -1,6 +1,25 @@
 <?php
-require_once "header.php";
 session_start();
+global $pdo;
+require_once "header.php";
+require_once "connection_db.php";
+$query = "
+SELECT * 
+FROM events
+JOIN locations
+ON events.location_id = locations.id
+JOIN performers
+ON events.performer_id = performers.id
+";
+$sql = $pdo->prepare($query);
+$sql->execute();
+$events = $sql->fetchAll();
+foreach ($events as $event) {
+    echo $event['id'];
+}
+
+$first = true;
+
 ?>
     <style>
         @media (max-width: 768px) {
@@ -49,68 +68,34 @@ session_start();
 
     <div id="event-carousel" class="carousel slide container" data-bs-ride="carousel">
         <div class="carousel-inner w-100">
-            <div class="carousel-item active">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=1">
+            <?php foreach ($events as $event) { ?>
+                <div class="carousel-item <?php if ($first) {
+                    echo "active";
+                    $first = false;
+                } ?>">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            image
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <?= $event['name'] ?>
+                            </div>
+                            <div class="card-footer">
+                                <?= $event['stage_name'] ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=2">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=3">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=4">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=5">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=6">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=7">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3">
-                    <div class="card card-body">
-                        <img class="img-fluid" src="http://placehold.it/380?text=8">
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#event-carousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#event-carousel"
+                data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#event-carousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#event-carousel"
+                data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -178,11 +163,13 @@ session_start();
             </div>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#artist-carousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#artist-carousel"
+                data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#artist-carousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#artist-carousel"
+                data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -190,7 +177,7 @@ session_start();
 
     <script>
         $('.carousel .carousel-item').each(function () {
-            var minPerSlide = 44;
+            var minPerSlide = 4;
             var next = $(this).next();
             if (!next.length) {
                 next = $(this).siblings(':first');

@@ -1,6 +1,11 @@
 <?php
 session_start();
 date_default_timezone_set('Europe/Rome');
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,5 +36,6 @@ date_default_timezone_set('Europe/Rome');
         <a href="profile.php">Profile</a>
     <?php } ?>
 </header>
-<div class="mt-auto d-flex align-items-center justify-content-center flex-column h-100"> <!--mt-auto d-flex align-items-center justify-content-center flex-column-->
+<div class="mt-auto d-flex align-items-center justify-content-center flex-column h-100">
+    <!--mt-auto d-flex align-items-center justify-content-center flex-column-->
 

@@ -23,12 +23,12 @@ CREATE TABLE `users`
 
 CREATE TABLE `locations`
 (
-    `id`               INT          NOT NULL AUTO_INCREMENT,
-    `name`             VARCHAR(30)  NOT NULL,
-    `address`          VARCHAR(255) NOT NULL,
-    `city`             VARCHAR(30)  NOT NULL,
-    `country`          VARCHAR(30)  NOT NULL,
-    `available_places` INT          NOT NULL,
+    `id`            INT          NOT NULL AUTO_INCREMENT,
+    `name`          VARCHAR(30)  NOT NULL,
+    `address`       VARCHAR(255) NOT NULL,
+    `city`          VARCHAR(30)  NOT NULL,
+    `country`       VARCHAR(30)  NOT NULL,
+    available_seats INT          NOT NULL,
     PRIMARY KEY (`id`)
 );
 
@@ -55,3 +55,27 @@ CREATE TABLE `tickets`
     FOREIGN KEY (`event_id`) REFERENCES events (`id`),
     PRIMARY KEY (`id`)
 );
+
+INSERT INTO `locations` (name, address, city, country, available_seats)
+VALUES ('Unipol Forum', 'Via Giuseppe di Vittorio, 6', 'Milan', 'Italy', 300),
+       ('Ippodromo SNAI', 'Piazzale dello Sport, 16', 'Mialan', 'Italy', 500);
+
+INSERT INTO `performers` (`stage_name`, `biography`)
+VALUES ('Metallica', 'Metal band'),
+       ('Nirvana', 'The best band ever existed'),
+       ('System of a Down', 'A Nu Metal Band');
+
+INSERT INTO `events` (name, description, date, over_eighteen, location_id, performer_id)
+VALUES ('Sick New World', 'Metallica concert', '2024-05-29', false, (SELECT id
+                                                                     FROM locations
+                                                                     WHERE locations.name LIKE 'Ippodromo SNAI'),
+        (SELECT id
+         FROM performers
+         WHERE stage_name LIKE 'Metallica')),
+       ('Mario', 'Mario concert', '2024-8-30', false, (SELECT id
+                                                       FROM locations
+                                                       WHERE locations.name LIKE 'Unipol Forum'),
+        (SELECT id
+         FROM performers
+         WHERE stage_name LIKE 'Nirvana'));
+
