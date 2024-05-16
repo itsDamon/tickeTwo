@@ -24,6 +24,8 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+    <script src="OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 </head>
 <body class="d-flex flex-column min-vh-100 flex-grow-1 p-3">
 <header class="text-center p-2 d-flex align-items-center justify-content-around">
