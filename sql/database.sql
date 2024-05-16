@@ -41,6 +41,7 @@ CREATE TABLE `events`
     `over_eighteen` BOOL         NOT NULL,
     `location_id`   INT          NOT NULL,
     `performer_id`  INT          NOT NULL,
+    type ENUM('CONCERT','THEATRE','SPORT') NOT NULL,
     FOREIGN KEY (`performer_id`) REFERENCES performers (`id`),
     FOREIGN KEY (`location_id`) REFERENCES locations (`id`),
     PRIMARY KEY (`id`)
