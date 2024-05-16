@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS `ticketwo`;
 CREATE DATABASE IF NOT EXISTS `ticketwo`;
 USE `ticketwo`;
 
-CREATE TABLE `performers`
+CREATE TABLE authors
 (
     `id`         INT         NOT NULL AUTO_INCREMENT,
     `stage_name` VARCHAR(30) NOT NULL,
@@ -41,8 +41,8 @@ CREATE TABLE `events`
     `over_eighteen` BOOL                               NOT NULL,
     `location_id`   INT                                NOT NULL,
     `performer_id`  INT                                NOT NULL,
-    type            ENUM ('CONCERT','THEATRE','SPORT') NOT NULL,
-    FOREIGN KEY (`performer_id`) REFERENCES performers (`id`),
+    `type`          ENUM ('CONCERT','THEATRE','SPORT') NOT NULL,
+    FOREIGN KEY (`performer_id`) REFERENCES authors (`id`),
     FOREIGN KEY (`location_id`) REFERENCES locations (`id`),
     PRIMARY KEY (`id`)
 );
@@ -65,7 +65,7 @@ VALUES ('Unipol Forum', 'Via Giuseppe di Vittorio, 6', 'Milan', 'Italy', 300),
        ('Autodromo Nazionale di Monza', 'Viale di Vedano,5', 'Monza', 'Italy', 200),
        ('Teatro Manzoni', 'Via Alessandro Manzoni, 40', 'Milan', 'Italy', 850);
 
-INSERT INTO `performers` (`stage_name`, `biography`)
+INSERT INTO authors (`stage_name`, `biography`)
 VALUES ('Metallica', 'Metal band'),
        ('Nirvana', 'The best band ever existed'),
        ('System of a Down', 'A Nu Metal Band'),
@@ -76,31 +76,31 @@ VALUES ('Metallica', 'Metal band'),
        ('Rammstein', 'The greatest german metal band'),
        ('Formula 1', 'Follow the formula 1 everywhere it goes');
 
-INSERT INTO `events` (name, description, date, over_eighteen, location_id, performer_id)
+INSERT INTO `events` (name, description, date, over_eighteen, location_id, performer_id, type)
 VALUES
     #Concerto dei Metallica
     ('Sick New World', 'Metallica concert', '2024-05-29', false, (SELECT id
                                                                   FROM locations
                                                                   WHERE locations.name LIKE 'Ippodromo SNAI'),
      (SELECT id
-      FROM performers
-      WHERE stage_name LIKE 'Metallica')),
+      FROM authors
+      WHERE stage_name LIKE 'Metallica'), 'CONCERT'),
 
     #Concerto di Mario
     ('Mario', 'Mario concert', '2024-8-30', false, (SELECT id
                                                     FROM locations
                                                     WHERE locations.name LIKE 'Unipol Forum'),
      (SELECT id
-      FROM performers
-      WHERE stage_name LIKE 'Nirvana')),
+      FROM authors
+      WHERE stage_name LIKE 'Nirvana'), 'CONCERT'),
 
-    #Formula 1 insert
+    #Formula 1
     ('Formula 1', 'Formula 1 at Monza National Racetrack', '2024-06-30', false,
      (select locations.id from locations where locations.name like 'Autodromo Nazionale di Monza'),
-     (select id from performers where performers.stage_name like 'Formula 1')),
+     (select id from authors where authors.stage_name like 'Formula 1'), 'SPORT'),
 
     #Pucci show
     ('Il meglio del peggio', 'Cabaret show of Andrea Pucci', '2024-09-21', true,
      (select locations.id from locations where locations.name like 'Teatro Manzoni'),
-     (select id from performers where performers.stage_name like 'Andrea Pucci'));
+     (select id from authors where authors.stage_name like 'Andrea Pucci'), 'THEATRE');
 

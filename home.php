@@ -3,60 +3,56 @@ session_start();
 global $pdo;
 require_once "header.php";
 require_once "connection_db.php";
-$query = "
-SELECT * 
-FROM events 
-JOIN locations
-ON events.location_id = locations.id
-JOIN performers
-ON events.performer_id = performers.id
-GROUP BY events.name
-";
-$sql = $pdo->query($query);
-$sql->execute();
-$events = $sql->fetchAll();
+
 
 $query = "
 SELECT * 
-FROM events
-JOIN locations
-ON events.location_id = locations.id
-JOIN performers
-ON events.performer_id = performers.id
+FROM performers
 ";
 $sql = $pdo->query($query);
 $sql->execute();
-$events = $sql->fetchAll();
-
+$authors = $sql->fetchAll();
 
 
 $first = true;
 
 ?>
-    <div class="owl-carousel owl-theme">
-        <?php foreach ($events as $event) { ?>
+
+    <div id="event-carousel" class="owl-carousel owl-theme">
+        <?php foreach ($authors as $author) { ?>
             <div class="item">
-                <div class="card text-center">
-                    <div class="card-header">
-                        image
-                    </div>
+                <div class="card p-3">
+                    <img src="url_della_foto.jpg" class="card-img-top" alt="Foto dell'evento">
                     <div class="card-body">
-                        <div class="card-title">
-                            <?= $event['name'] ?>
-                        </div>
-                        <div class="card-footer">
-                            <?= $event['stage_name'] ?>
-                        </div>
+                        <a href="artist.php?author_id=<?= $author['id'] ?>">
+                            <h5 class="card-text"><?= $author['stage_name'] ?></h5>
+                        </a>
+                        <!--                        <p class="card-title"><?php /*= $event['name'] */ ?></p>-->
+                        <a href="artist.php?author_id=<?= $author['id'] ?>" class="btn btn-primary mt-3">Vai
+                            gli eventi</a>
                     </div>
                 </div>
             </div>
         <?php } ?>
     </div>
+
     <hr class="w-50">
 
-    <div id="artist-carousel" class="carousel slide container" data-bs-ride="carousel">
-
-    </div>
+    <!--    <div id="artist-carousel" class="owl-carousel owl-theme">
+        <?php /*foreach ($performers as $performer) { */ ?>
+            <div class="item p-3">
+                <div class="card">
+                    <img src="url_della_foto.jpg" class="card-img-top" alt="Foto dell'autore">
+                    <div class="card-body">
+                        <a href="artist.php?author_id=<?php /*= $performer['id'] */ ?>">
+                            <h5 class="card-text"><?php /*= $performer['stage_name'] */ ?></h5>
+                        </a>
+                                              <p class="card-title"></p>
+                    </div>
+                </div>
+            </div>
+        <?php /*} */ ?>
+    </div> -->
 
 <?php
 if (isset($_SESSION['user'])) {

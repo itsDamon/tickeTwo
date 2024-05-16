@@ -8,8 +8,17 @@ if ($event_id == '') {
 }
 ?>
 
-<div>
+<div class="container-fluid">
+    <div class="row" id="event_image">
+        <div class="col-md-12">
+            <img src="" alt="Event image">
+        </div>
+    </div>
+    <div class="row" id="">
+        <div class="col-md-12">
 
+        </div>
+    </div>
 </div>
 
 <?php require_once 'footer.html'; ?>
