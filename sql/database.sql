@@ -58,12 +58,22 @@ CREATE TABLE `tickets`
 
 INSERT INTO `locations` (name, address, city, country, available_seats)
 VALUES ('Unipol Forum', 'Via Giuseppe di Vittorio, 6', 'Milan', 'Italy', 300),
-       ('Ippodromo SNAI', 'Piazzale dello Sport, 16', 'Mialan', 'Italy', 500);
+       ('Ippodromo SNAI', 'Piazzale dello Sport, 16', 'Milan', 'Italy', 500),
+       ('Stadio San Siro', 'Piazzale Angelo Moratti', 'Milan', 'Italy', 600),
+       ('Circo Massimo', 'Via del Circo Massimo', 'Rome', 'Italy', 1000),
+       ('Autodromo Nazionale di Monza', 'Viale di Vedano,5', 'Monza', 'Italy', 200),
+       ('Teatro Manzoni', 'Via Alessandro Manzoni, 40', 'Milan', 'Italy', 850);
 
 INSERT INTO `performers` (`stage_name`, `biography`)
 VALUES ('Metallica', 'Metal band'),
        ('Nirvana', 'The best band ever existed'),
-       ('System of a Down', 'A Nu Metal Band');
+       ('System of a Down', 'A Nu Metal Band'),
+       ('Korn',' 90s Nu metal band '),
+        ('Slipknot','They hate people '),
+        ('Caparezza','Famous italian singer'),
+        ('Andrea Pucci','A famous italian cabaretist from milan'),
+        ('Rammstein','The greatest german metal band'),
+        ('Formula 1','Follow the formula 1 everywhere it goes');
 
 INSERT INTO `events` (name, description, date, over_eighteen, location_id, performer_id)
 VALUES ('Sick New World', 'Metallica concert', '2024-05-29', false, (SELECT id
