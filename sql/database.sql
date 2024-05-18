@@ -40,9 +40,9 @@ CREATE TABLE `events`
     `date`          TIMESTAMP                          NOT NULL,
     `over_eighteen` BOOL                               NOT NULL,
     `location_id`   INT                                NOT NULL,
-    `performer_id`  INT                                NOT NULL,
+    `author_id`     INT                                NOT NULL,
     `type`          ENUM ('CONCERT','THEATRE','SPORT') NOT NULL,
-    FOREIGN KEY (`performer_id`) REFERENCES authors (`id`),
+    FOREIGN KEY (`author_id`) REFERENCES authors (`id`),
     FOREIGN KEY (`location_id`) REFERENCES locations (`id`),
     PRIMARY KEY (`id`)
 );
@@ -76,7 +76,7 @@ VALUES ('Metallica', 'Metal band'),
        ('Rammstein', 'The greatest german metal band'),
        ('Formula 1', 'Follow the formula 1 everywhere it goes');
 
-INSERT INTO `events` (name, description, date, over_eighteen, location_id, performer_id, type)
+INSERT INTO `events` (name, description, date, over_eighteen, location_id, author_id, type)
 VALUES
     #Concerto dei Metallica
     ('Sick New World', 'Metallica concert', '2024-05-29', false, (SELECT id

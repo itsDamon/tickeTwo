@@ -7,7 +7,7 @@ require_once "connection_db.php";
 
 $query = "
 SELECT * 
-FROM performers
+FROM authors
 ";
 $sql = $pdo->query($query);
 $sql->execute();
