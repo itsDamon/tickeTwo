@@ -26,7 +26,7 @@ error_reporting(E_ALL);
             crossorigin="anonymous" defer></script>
     <script src="OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 </head>
-<body class="d-flex flex-column min-vh-100 flex-grow-1 bg-secondary">
+<body class="d-flex flex-column min-vh-100 flex-grow-1 bg-light">
 <header class="text-center p-2 d-flex align-items-center justify-content-around bg-dark">
     <a href="home.php" class="link-underline link-underline-opacity-0">
         <h2>TickeTwo</h2>
@@ -37,6 +37,6 @@ error_reporting(E_ALL);
         <a href="profile.php">Profile</a>
     <?php } ?>
 </header>
-<div class="mt-auto d-flex align-items-center justify-content-center flex-column h-100 bg-light mx-3">
+<div class="mt-auto d-flex align-items-center justify-content-center flex-column h-100 bg-secondary mx-3">
     <!--mt-auto d-flex align-items-center justify-content-center flex-column-->
 

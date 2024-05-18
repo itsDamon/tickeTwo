@@ -19,7 +19,7 @@ $author = $sql->fetchAll()[0];
 
 $query = "
 SELECT * 
-FROM events 
+FROM events
 JOIN locations
 ON events.location_id = locations.id
 JOIN authors
@@ -35,7 +35,7 @@ $events = $sql->fetchAll();
     <section class="container mt-5">
         <div class="row">
             <div class="col-md-4 text-center">
-                <img src="URL_IMMAGINE_ARTISTA" alt="Foto Artista" class="img-fluid rounded-circle artist-photo">
+                <img src="" alt="Foto Artista" class="img-fluid rounded-circle artist-photo">
             </div>
             <div class="col-md-8">
                 <h2><?= $author['stage_name'] ?></h2>
@@ -53,13 +53,14 @@ $events = $sql->fetchAll();
                     <div class="col-md-4">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $event['description'] ?></h5>
+                                <h5 class="card-title"><?= $event['event_description'] ?></h5>
                                 <div class="card-text">
-                                    <p><?= $event['city'] ?></p>
-                                    <p><?= $event['name'] ?> - <?php $date = new DateTimeImmutable($event['date']);
+                                    <p><?= $event['city'] ?> - <?= $event['country'] ?> </p>
+                                    <p><?= $event['location_name'] ?> - <?php $date = new DateTimeImmutable($event['date']);
                                         echo $date->format('d/m/Y'); ?></p>
                                 </div>
-                                <a href="#" class="btn btn-primary">Compra Biglietti</a>
+                                <a href="event.php?event_id=<?= $event['id'] ?>" class="btn btn-primary">Compra
+                                    Biglietti</a>
                             </div>
                         </div>
                     </div>

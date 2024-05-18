@@ -24,7 +24,7 @@ CREATE TABLE `users`
 CREATE TABLE `locations`
 (
     `id`            INT          NOT NULL AUTO_INCREMENT,
-    `name`          VARCHAR(30)  NOT NULL,
+    `location_name`          VARCHAR(30)  NOT NULL,
     `address`       VARCHAR(255) NOT NULL,
     `city`          VARCHAR(30)  NOT NULL,
     `country`       VARCHAR(30)  NOT NULL,
@@ -34,14 +34,14 @@ CREATE TABLE `locations`
 
 CREATE TABLE `events`
 (
-    `id`            INT                                NOT NULL AUTO_INCREMENT,
-    `name`          VARCHAR(30)                        NOT NULL,
-    `description`   VARCHAR(255)                       NOT NULL,
-    `date`          TIMESTAMP                          NOT NULL,
-    `over_eighteen` BOOL                               NOT NULL,
-    `location_id`   INT                                NOT NULL,
-    `author_id`     INT                                NOT NULL,
-    `type`          ENUM ('CONCERT','THEATRE','SPORT') NOT NULL,
+    `id`                INT                                NOT NULL AUTO_INCREMENT,
+    `event_name`        VARCHAR(30)                        NOT NULL,
+    `event_description` VARCHAR(255)                       NOT NULL,
+    `date`              TIMESTAMP                          NOT NULL,
+    `over_eighteen`     BOOL                               NOT NULL,
+    `location_id`       INT                                NOT NULL,
+    `author_id`         INT                                NOT NULL,
+    `type`              ENUM ('CONCERT','THEATRE','SPORT') NOT NULL,
     FOREIGN KEY (`author_id`) REFERENCES authors (`id`),
     FOREIGN KEY (`location_id`) REFERENCES locations (`id`),
     PRIMARY KEY (`id`)
@@ -57,7 +57,7 @@ CREATE TABLE `tickets`
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO `locations` (name, address, city, country, available_seats)
+INSERT INTO `locations` (location_name, address, city, country, available_seats)
 VALUES ('Unipol Forum', 'Via Giuseppe di Vittorio, 6', 'Milan', 'Italy', 300),
        ('Ippodromo SNAI', 'Piazzale dello Sport, 16', 'Milan', 'Italy', 500),
        ('Stadio San Siro', 'Piazzale Angelo Moratti', 'Milan', 'Italy', 600),
@@ -76,12 +76,12 @@ VALUES ('Metallica', 'Metal band'),
        ('Rammstein', 'The greatest german metal band'),
        ('Formula 1', 'Follow the formula 1 everywhere it goes');
 
-INSERT INTO `events` (name, description, date, over_eighteen, location_id, author_id, type)
+INSERT INTO `events` (event_name, event_description, date, over_eighteen, location_id, author_id, type)
 VALUES
     #Concerto dei Metallica
     ('Sick New World', 'Metallica concert', '2024-05-29', false, (SELECT id
                                                                   FROM locations
-                                                                  WHERE locations.name LIKE 'Ippodromo SNAI'),
+                                                                  WHERE locations.location_name LIKE 'Ippodromo SNAI'),
      (SELECT id
       FROM authors
       WHERE stage_name LIKE 'Metallica'), 'CONCERT'),
@@ -89,18 +89,18 @@ VALUES
     #Concerto di Mario
     ('Mario', 'Mario concert', '2024-8-30', false, (SELECT id
                                                     FROM locations
-                                                    WHERE locations.name LIKE 'Unipol Forum'),
+                                                    WHERE locations.location_name LIKE 'Unipol Forum'),
      (SELECT id
       FROM authors
       WHERE stage_name LIKE 'Nirvana'), 'CONCERT'),
 
     #Formula 1
     ('Formula 1', 'Formula 1 at Monza National Racetrack', '2024-06-30', false,
-     (select locations.id from locations where locations.name like 'Autodromo Nazionale di Monza'),
+     (select locations.id from locations where locations.location_name like 'Autodromo Nazionale di Monza'),
      (select id from authors where authors.stage_name like 'Formula 1'), 'SPORT'),
 
     #Pucci show
     ('Il meglio del peggio', 'Cabaret show of Andrea Pucci', '2024-09-21', true,
-     (select locations.id from locations where locations.name like 'Teatro Manzoni'),
+     (select locations.id from locations where locations.location_name like 'Teatro Manzoni'),
      (select id from authors where authors.stage_name like 'Andrea Pucci'), 'THEATRE');
 
