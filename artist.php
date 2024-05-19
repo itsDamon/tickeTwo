@@ -24,7 +24,7 @@ JOIN locations
 ON events.location_id = locations.location_id
 JOIN authors
 ON events.author_id = authors.author_id
-WHERE events.event_id = ?";
+WHERE events.author_id = ?";
 $sql = $pdo->prepare($query);
 $sql->execute([$author_id]);
 $events = $sql->fetchAll();

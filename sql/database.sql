@@ -21,7 +21,7 @@ CREATE TABLE `users`
 
 CREATE TABLE `locations`
 (
-    `location_id`   INT          NOT NULL,
+    `location_id`   INT          NOT NULL AUTO_INCREMENT,
     `location_name` VARCHAR(30)  NOT NULL,
     `address`       VARCHAR(255) NOT NULL,
     `city`          VARCHAR(30)  NOT NULL,
@@ -58,24 +58,24 @@ CREATE TABLE `tickets`
 
 
 
-INSERT INTO `locations` (location_id, location_name, address, city, country, available_seats)
-VALUES (1, 'Unipol Forum', 'Via Giuseppe di Vittorio, 6', 'Milan', 'Italy', 300),
-       (3, 'Ippodromo SNAI', 'Piazzale dello Sport, 16', 'Milan', 'Italy', 500),
-       (2, 'Stadio San Siro', 'Piazzale Angelo Moratti', 'Milan', 'Italy', 600),
-       (4, 'Circo Massimo', 'Via del Circo Massimo', 'Rome', 'Italy', 1000),
-       (5, 'Autodromo Nazionale di Monza', 'Viale di Vedano,5', 'Monza', 'Italy', 200),
-       (6, 'Teatro Manzoni', 'Via Alessandro Manzoni, 40', 'Milan', 'Italy', 850);
+INSERT INTO `locations` (location_name, address, city, country, available_seats)
+VALUES ('Unipol Forum', 'Via Giuseppe di Vittorio, 6', 'Milan', 'Italy', 300),
+       ('Ippodromo SNAI', 'Piazzale dello Sport, 16', 'Milan', 'Italy', 500),
+       ('Stadio San Siro', 'Piazzale Angelo Moratti', 'Milan', 'Italy', 600),
+       ('Circo Massimo', 'Via del Circo Massimo', 'Rome', 'Italy', 1000),
+       ('Autodromo Nazionale di Monza', 'Viale di Vedano,5', 'Monza', 'Italy', 200),
+       ('Teatro Manzoni', 'Via Alessandro Manzoni, 40', 'Milan', 'Italy', 850);
 
-INSERT INTO authors (author_id, `stage_name`, `biography`)
-VALUES (1, 'Metallica', 'Metal band'),
-       (2, 'Nirvana', 'The best band ever existed'),
-       (3, 'System of a Down', 'A Nu Metal Band'),
-       (9, 'Korn', ' 90s Nu metal band '),
-       (4, 'Slipknot', 'They hate people '),
-       (5, 'Caparezza', 'Famous italian singer'),
-       (6, 'Andrea Pucci', 'A famous italian cabaretist from milan'),
-       (7, 'Rammstein', 'The greatest german metal band'),
-       (8, 'F1', 'Follow the formula 1 everywhere it goes');
+INSERT INTO authors (`stage_name`, `biography`)
+VALUES ('Metallica', 'Metal band'),
+       ('Nirvana', 'The best band ever existed'),
+       ('System of a Down', 'A Nu Metal Band'),
+       ('Korn', ' 90s Nu metal band '),
+       ('Slipknot', 'They hate people '),
+       ('Caparezza', 'Famous italian singer'),
+       ('Andrea Pucci', 'A famous italian cabaretist from milan'),
+       ('Rammstein', 'The greatest german metal band'),
+       ('F1', 'Follow the formula 1 everywhere it goes');
 INSERT INTO `events` (event_name, event_description, date, over_eighteen, location_id, author_id, type, price)
 VALUES
     #Concerto dei Metallica
