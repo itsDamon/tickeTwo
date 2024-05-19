@@ -16,10 +16,10 @@ $query = "
 SELECT * 
 FROM events
 JOIN locations
-ON events.location_id = locations.id
+ON events.location_id = locations.location_id
 JOIN authors
-ON events.author_id = authors.id
-WHERE events.id = ?";
+ON events.author_id = authors.author_id
+WHERE events.event_id = ?";
 $sql = $pdo->prepare($query);
 $sql->execute([$event_id]);
 $event = $sql->fetchAll()[0];
@@ -47,10 +47,10 @@ $price = $event['price'] * $quantity;
                 <strong>Prezzo: </strong> <?php echo $price; ?>
             </p>
             <form action="confirm_buy.php" method="POST">
-                <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['id']); ?>">
+                <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['event_id']); ?>">
                 <input type="hidden" name="quantity" value="<?php echo htmlspecialchars($quantity); ?>">
                 <button type="submit" class="btn btn-success">Conferma Acquisto</button>
-                <a href="event.php?event_id=<?= $event['id'] ?>" class="btn btn-primary">Torna alla pagina
+                <a href="event.php?event_id=<?= $event['event_id'] ?>" class="btn btn-primary">Torna alla pagina
                     principale</a>
             </form>
         </div>

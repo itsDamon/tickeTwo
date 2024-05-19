@@ -26,9 +26,9 @@ $user = $sql->fetch();
 
 $query = "SELECT event_name, events.price, events.date, count(*) as quantity
         FROM tickets 
-        JOIN events ON tickets.event_id = events.id 
+        JOIN events ON tickets.event_id = events.event_id
         WHERE tickets.user_id = ?
-        GROUP BY events.id";
+        GROUP BY events.event_id";
 
 $stmt = $pdo->prepare($query);
 $stmt->execute([$user_id]);
@@ -79,7 +79,11 @@ $tickets = $stmt->fetchAll();
                         <?php foreach ($tickets as $ticket): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($ticket['event_name']); ?></td>
-                                <td><?php echo htmlspecialchars($ticket['date']); ?></td>
+                                <td><?php try {
+                                        $birthdate = new DateTimeImmutable($ticket['date']);
+                                        echo $birthdate->format('d/m/Y');
+                                    } catch (Exception $e) {
+                                    }; ?></td>
                                 <td><?php echo htmlspecialchars($ticket['quantity']); ?></td>
                             </tr>
                         <?php endforeach; ?>

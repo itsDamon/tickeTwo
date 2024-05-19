@@ -5,7 +5,7 @@ require_once 'connection_db.php';
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 $query = '
-SELECT id, username, password
+SELECT user_id, username, password
 FROM users
 WHERE users.username = ?
 ';
@@ -24,7 +24,7 @@ if (!$user || !password_verify($password, $hashed_password)) {
     session_start();
 
     $_SESSION['user'] = $user['username'];
-    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['user_id'] = $user['user_id'];
 
     header('Location: home.php');
 }

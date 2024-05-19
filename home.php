@@ -21,12 +21,13 @@ $first = true;
         <?php foreach ($authors as $author) { ?>
             <div class="item">
                 <div class="card p-3">
-                    <img src="images/<?= strtolower(htmlspecialchars($author['stage_name'])) ?>.jpg" width="100px" height="250px"
+                    <img src="images/<?= strtolower(htmlspecialchars($author['stage_name'])) ?>.jpg" width="100px"
+                         height="250px"
                          alt="Foto dell'evento">
                     <h5 class="card-title"><?= $author['stage_name'] ?></h5>
                     <div class="card-text">
-                        <a href="artist.php?author_id=<?= $author['id'] ?>"></a>
-                        <a href="artist.php?author_id=<?= $author['id'] ?>" class="btn btn-primary mt-3">Vai
+                        <a href="artist.php?author_id=<?= $author['author_id'] ?>"></a>
+                        <a href="artist.php?author_id=<?= $author['author_id'] ?>" class="btn btn-primary mt-3">Vai
                             agli eventi</a>
                     </div>
                 </div>
