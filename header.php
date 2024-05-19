@@ -23,9 +23,9 @@ require_once "connection_db.php";
     <script src="OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 </head>
 <body class="d-flex flex-column min-vh-100 flex-grow-1 bg-light">
-<header class="text-center p-2 d-flex align-items-center justify-content-around bg-dark">
+<header class="text-center p-2 d-flex align-items-center justify-content-between text-bg-primary p-3">
     <a href="home.php" class="link-underline link-underline-opacity-0">
-        <h2>TickeTwo</h2>
+        <img src="docs/logoTicketTwo.jpg" height="100px" width="150px" class="rounded float-start" alt="immagine del sito">
     </a>
     <?php if (!isset($_SESSION['user'])) { ?>
         <a href="login.php">Login</a>
