@@ -21,7 +21,7 @@ $first = true;
         <?php foreach ($authors as $author) { ?>
             <div class="item">
                 <div class="card p-3">
-                    <img src="images/<?= htmlspecialchars($author['stage_name']) ?>.jpg" class="card-img-top mb-3" alt="Foto dell'evento">
+                    <img src="images/<?= htmlspecialchars($author['stage_name']) ?>.jpg"  width="100px" height="250px" alt="Foto dell'evento">
                     <h5 class="card-title"><?= $author['stage_name'] ?></h5>
                     <div class="card-text">
                         <a href="artist.php?author_id=<?= $author['id'] ?>"></a>
