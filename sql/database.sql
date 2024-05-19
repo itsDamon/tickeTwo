@@ -42,6 +42,7 @@ CREATE TABLE `events`
     `location_id`       INT                                NOT NULL,
     `author_id`         INT                                NOT NULL,
     `type`              ENUM ('CONCERT','THEATRE','SPORT') NOT NULL,
+    `cost`              FLOAT                                not null,
     FOREIGN KEY (`author_id`) REFERENCES authors (`id`),
     FOREIGN KEY (`location_id`) REFERENCES locations (`id`),
     PRIMARY KEY (`id`)
@@ -56,6 +57,8 @@ CREATE TABLE `tickets`
     FOREIGN KEY (`event_id`) REFERENCES events (`id`),
     PRIMARY KEY (`id`)
 );
+
+
 
 INSERT INTO `locations` (location_name, address, city, country, available_seats)
 VALUES ('Unipol Forum', 'Via Giuseppe di Vittorio, 6', 'Milan', 'Italy', 300),
@@ -76,7 +79,7 @@ VALUES ('Metallica', 'Metal band'),
        ('Rammstein', 'The greatest german metal band'),
        ('F1', 'Follow the formula 1 everywhere it goes');
 
-INSERT INTO `events` (event_name, event_description, date, over_eighteen, location_id, author_id, type)
+INSERT INTO `events` (event_name, event_description, date, over_eighteen, location_id, author_id, type,cost)
 VALUES
     #Concerto dei Metallica
     ('Sick New World', 'Metallica concert', '2024-05-29', false, (SELECT id
@@ -84,7 +87,7 @@ VALUES
                                                                   WHERE locations.location_name LIKE 'Ippodromo SNAI'),
      (SELECT id
       FROM authors
-      WHERE stage_name LIKE 'Metallica'), 'CONCERT'),
+      WHERE stage_name LIKE 'Metallica'), 'CONCERT',40.60),
 
     #Concerto di Mario
     ('Mario', 'Mario concert', '2024-8-30', false, (SELECT id
@@ -92,15 +95,15 @@ VALUES
                                                     WHERE locations.location_name LIKE 'Unipol Forum'),
      (SELECT id
       FROM authors
-      WHERE stage_name LIKE 'Nirvana'), 'CONCERT'),
+      WHERE stage_name LIKE 'Nirvana'), 'CONCERT',50.44),
 
     #Formula 1
     ('Formula 1', 'Formula 1 at Monza National Racetrack', '2024-06-30', false,
      (select locations.id from locations where locations.location_name like 'Autodromo Nazionale di Monza'),
-     (select id from authors where authors.stage_name like 'Formula 1'), 'SPORT'),
+     (select id from authors where authors.stage_name like 'Formula 1'), 'SPORT',10.50),
 
     #Pucci show
     ('Il meglio del peggio', 'Cabaret show of Andrea Pucci', '2024-09-21', true,
      (select locations.id from locations where locations.location_name like 'Teatro Manzoni'),
-     (select id from authors where authors.stage_name like 'Andrea Pucci'), 'THEATRE');
+     (select id from authors where authors.stage_name like 'Andrea Pucci'), 'THEATRE',15.22);
 
