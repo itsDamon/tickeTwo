@@ -35,7 +35,7 @@ $events = $sql->fetchAll();
     <section class="container mt-5">
         <div class="row">
             <div class="col-md-4 text-center">
-                <img src="" alt="Foto Artista" class="img-fluid rounded-circle artist-photo">
+                <img src="images/<?= htmlspecialchars($author['stage_name']) ?>.jpg" alt="Foto Artista" class="img-fluid rounded-circle artist-photo">
             </div>
             <div class="col-md-8">
                 <h2><?= $author['stage_name'] ?></h2>
