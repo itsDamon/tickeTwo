@@ -31,10 +31,14 @@ $event = $sql->fetchAll()[0];
             <h5 class="card-title">Dettagli dell'Evento</h5>
             <p class="card-text">
                 <strong>Descrizione:</strong> <?= htmlspecialchars($event['event_description']); ?> <br>
-                <strong>Data:</strong> <?php echo htmlspecialchars($event['date']); ?> <br>
+                <strong>Data:</strong> <?php try {
+                    $birthdate = new DateTimeImmutable($event['date']);
+                    echo $birthdate->format('d/m/Y');
+                } catch (Exception $e) {
+                } ?> <br>
                 <strong>Per maggiorenni:</strong> <?= $event['over_eighteen'] ? 'Sì' : 'No'; ?> <br>
-                <strong>Luogo:</strong> Nome del luogo (ID: <?= htmlspecialchars($event['location_name']); ?>) <br>
-                <strong>Autore:</strong> Nome dell'autore (ID: <?= htmlspecialchars($event['stage_name']); ?>)
+                <strong>Luogo:</strong> Nome del luogo: <?= htmlspecialchars($event['location_name']); ?> <br>
+                <strong>Autore:</strong> Nome dell'autore: <?= htmlspecialchars($event['stage_name']); ?>
                 <br>
                 <strong>Tipo di evento:</strong> <?php echo htmlspecialchars($event['type']); ?>
             </p>

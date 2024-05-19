@@ -49,6 +49,7 @@ $user = $sql->fetch();
         </a>
     </div>
 
+    
     <script>
         $(function () {
             $('a#logout').click(function () {
