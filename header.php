@@ -33,6 +33,6 @@ require_once "connection_db.php";
         <a href="profile.php">Profile</a>
     <?php } ?>
 </header>
-<div class="mt-auto d-flex align-items-center justify-content-center flex-column h-100 bg-secondary mx-3">
+<div class="mt-auto d-flex align-items-center justify-content-center flex-column h-100 text-bg-primary p-3 p-3 p-3 p-3 p-3 p-3 mx-3">
     <!--mt-auto d-flex align-items-center justify-content-center flex-column-->
 
