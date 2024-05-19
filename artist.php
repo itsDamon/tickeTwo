@@ -56,7 +56,8 @@ $events = $sql->fetchAll();
                                 <h5 class="card-title"><?= $event['event_description'] ?></h5>
                                 <div class="card-text">
                                     <p><?= $event['city'] ?> - <?= $event['country'] ?> </p>
-                                    <p><?= $event['location_name'] ?> - <?php $date = new DateTimeImmutable($event['date']);
+                                    <p><?= $event['location_name'] ?>
+                                        - <?php $date = new DateTimeImmutable($event['date']);
                                         echo $date->format('d/m/Y'); ?></p>
                                 </div>
                                 <a href="event.php?event_id=<?= $event['id'] ?>" class="btn btn-primary">Compra

@@ -36,9 +36,8 @@ $price = $event['price'] * $quantity;
                 <strong>Descrizione:</strong> <?php echo htmlspecialchars($event['event_description']); ?> <br>
                 <strong>Data:</strong> <?php echo htmlspecialchars($event['date']); ?> <br>
                 <strong>Per maggiorenni:</strong> <?php echo $event['over_eighteen'] ? 'Sì' : 'No'; ?> <br>
-                <strong>Luogo:</strong> Nome del luogo (ID: <?php echo htmlspecialchars($event['location_id']); ?>) <br>
-                <strong>Autore:</strong> Nome dell'autore (ID: <?php echo htmlspecialchars($event['author_id']); ?>)
-                <br>
+                <strong>Luogo:</strong> Nome del luogo: <?= htmlspecialchars($event['location_name']); ?> <br>
+                <strong>Autore:</strong> Nome dell'autore: <?= htmlspecialchars($event['stage_name']); ?> <br>
                 <strong>Tipo di evento:</strong> <?php echo htmlspecialchars($event['type']); ?>
             </p>
             <hr>
