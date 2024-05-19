@@ -1,4 +1,8 @@
-
+<?php
+    session_start();
+    global $pdo;
+    require_once "connection_db.php";
+?>
 <!doctype html>
 <html lang="en">
 <head>

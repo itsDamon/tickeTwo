@@ -1,5 +1,4 @@
 <?php
-session_start();
 global $pdo;
 require_once "header.php";
 require_once "connection_db.php";
