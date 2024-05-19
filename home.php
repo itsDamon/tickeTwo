@@ -22,12 +22,12 @@ $first = true;
         <?php foreach ($authors as $author) { ?>
             <div class="item">
                 <div class="card p-3">
-                    <img src="url_della_foto.jpg" class="card-img-top mb-3" alt="Foto dell'evento">
+                    <img src="images/<?= htmlspecialchars($author['stage_name']) ?>.jpg" class="card-img-top mb-3" alt="Foto dell'evento">
                     <h5 class="card-title"><?= $author['stage_name'] ?></h5>
                     <div class="card-text">
                         <a href="artist.php?author_id=<?= $author['id'] ?>"></a>
                         <a href="artist.php?author_id=<?= $author['id'] ?>" class="btn btn-primary mt-3">Vai
-                            gli eventi</a>
+                            agli eventi</a>
                     </div>
                 </div>
             </div>

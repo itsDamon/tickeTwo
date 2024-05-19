@@ -74,7 +74,7 @@ VALUES ('Metallica', 'Metal band'),
        ('Caparezza', 'Famous italian singer'),
        ('Andrea Pucci', 'A famous italian cabaretist from milan'),
        ('Rammstein', 'The greatest german metal band'),
-       ('Formula 1', 'Follow the formula 1 everywhere it goes');
+       ('F1', 'Follow the formula 1 everywhere it goes');
 
 INSERT INTO `events` (event_name, event_description, date, over_eighteen, location_id, author_id, type)
 VALUES
