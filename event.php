@@ -40,7 +40,7 @@ $event = $sql->fetchAll()[0];
             </p>
             <hr>
             <h5 class="card-title">Acquista Biglietti</h5>
-            <form id="ticketForm" action="" method="POST">
+            <form id="ticketForm" action="buyTickets.php" method="POST">
                 <div class="form-group">
                     <label for="quantity">Quantità:</label>
                     <div class="input-group">
