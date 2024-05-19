@@ -33,8 +33,8 @@ $event = $sql->fetchAll()[0];
                 <strong>Descrizione:</strong> <?= htmlspecialchars($event['event_description']); ?> <br>
                 <strong>Data:</strong> <?php echo htmlspecialchars($event['date']); ?> <br>
                 <strong>Per maggiorenni:</strong> <?= $event['over_eighteen'] ? 'Sì' : 'No'; ?> <br>
-                <strong>Luogo:</strong> Nome del luogo (ID: <?= htmlspecialchars($event['location_id']); ?>) <br>
-                <strong>Autore:</strong> Nome dell'autore (ID: <?= htmlspecialchars($event['author_id']); ?>)
+                <strong>Luogo:</strong> Nome del luogo (ID: <?= htmlspecialchars($event['location_name']); ?>) <br>
+                <strong>Autore:</strong> Nome dell'autore (ID: <?= htmlspecialchars($event['stage_name']); ?>)
                 <br>
                 <strong>Tipo di evento:</strong> <?php echo htmlspecialchars($event['type']); ?>
             </p>
