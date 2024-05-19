@@ -34,8 +34,6 @@ $first = true;
         <?php } ?>
     </div>
 
-    <hr class="w-50">
-
     <!--    <div id="artist-carousel" class="owl-carousel owl-theme">
         <?php /*foreach ($performers as $performer) { */ ?>
             <div class="item p-3">
@@ -53,11 +51,4 @@ $first = true;
     </div> -->
 
 <?php
-if (isset($_SESSION['user'])) {
-    echo "utente loggato";
-} else {
-    echo "utente non loggato";
-}
-
-
 require_once "footer.html";

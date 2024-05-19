@@ -9,7 +9,8 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-$user_id = $_SESSION['user'];
+$username = $_SESSION['user'];
+$user_id = $_SESSION['user_id'];
 
 $query = '
 SELECT *
@@ -18,10 +19,20 @@ WHERE username = ?
 ';
 
 $sql = $pdo->prepare($query);
-$sql->execute([$user_id]);
+$sql->execute([$username]);
 
 $user = $sql->fetch();
 
+
+$query = "SELECT event_name, events.price, events.date, count(*) as quantity
+        FROM tickets 
+        JOIN events ON tickets.event_id = events.id 
+        WHERE tickets.user_id = ?
+        GROUP BY events.id";
+
+$stmt = $pdo->prepare($query);
+$stmt->execute([$user_id]);
+$tickets = $stmt->fetchAll();
 
 ?>
     <div class="card text-center">
@@ -49,7 +60,37 @@ $user = $sql->fetch();
         </a>
     </div>
 
-    
+    <section class="mt-3">
+        <div class="card">
+            <div class="card-header">
+                <h4>Bought Tickets</h4>
+            </div>
+            <div class="card-body">
+                <?php if (count($tickets) > 0): ?>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($tickets as $ticket): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($ticket['event_name']); ?></td>
+                                <td><?php echo htmlspecialchars($ticket['date']); ?></td>
+                                <td><?php echo htmlspecialchars($ticket['quantity']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <p>No ticket bought.</p>
+                <?php endif; ?>
+            </div>
+    </section>
+
     <script>
         $(function () {
             $('a#logout').click(function () {
