@@ -12,7 +12,7 @@ if ($author_id == '') {
 $query = "
 SELECT * 
 FROM authors
-WHERE id = ?";
+WHERE author_id = ?";
 $sql = $pdo->prepare($query);
 $sql->execute([$author_id]);
 $author = $sql->fetchAll()[0];
@@ -21,13 +21,14 @@ $query = "
 SELECT * 
 FROM events
 JOIN locations
-ON events.location_id = locations.id
+ON events.location_id = locations.location_id
 JOIN authors
-ON events.author_id = authors.id
-WHERE author_id = ?";
+ON events.author_id = authors.author_id
+WHERE events.event_id = ?";
 $sql = $pdo->prepare($query);
 $sql->execute([$author_id]);
 $events = $sql->fetchAll();
+
 
 ?>
 
@@ -61,7 +62,7 @@ $events = $sql->fetchAll();
                                         - <?php $date = new DateTimeImmutable($event['date']);
                                         echo $date->format('d/m/Y'); ?></p>
                                 </div>
-                                <a href="event.php?event_id=<?= $event['id'] ?>" class="btn btn-primary">Compra
+                                <a href="event.php?event_id=<?= $event['event_id'] ?>" class="btn btn-primary">Compra
                                     Biglietti</a>
                             </div>
                         </div>

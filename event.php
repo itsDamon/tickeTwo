@@ -13,10 +13,10 @@ $query = "
 SELECT * 
 FROM events
 JOIN locations
-ON events.location_id = locations.id
+ON events.location_id = locations.location_id
 JOIN authors
-ON events.author_id = authors.id
-WHERE events.id = ?";
+ON events.author_id = authors.author_id
+WHERE events.event_id = ?";
 $sql = $pdo->prepare($query);
 $sql->execute([$event_id]);
 $event = $sql->fetchAll()[0];
@@ -58,7 +58,7 @@ $event = $sql->fetchAll()[0];
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['id']); ?>">
+                <input type="hidden" name="event_id" value="<?php echo htmlspecialchars($event['event_id']); ?>">
                 <button type="submit" class="btn btn-success">Acquista</button>
             </form>
         </div>
